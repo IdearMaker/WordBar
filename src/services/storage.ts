@@ -69,15 +69,19 @@ export const storage = {
         }
         const wordMasteryMap = new Map<string, any>();
         for (const w of existingBook.words) {
-          wordMasteryMap.set(w.id, {
+          const stats = {
             masteryLevel: w.masteryLevel,
             lastReviewed: w.lastReviewed,
             reviewCount: w.reviewCount,
-          });
+          };
+          wordMasteryMap.set(w.id, stats);
+          if (w.word) {
+            wordMasteryMap.set(w.word.toLowerCase().trim(), stats);
+          }
         }
 
         const updatedWords = defBook.words.map((w) => {
-          const stats = wordMasteryMap.get(w.id);
+          const stats = wordMasteryMap.get(w.id) || (w.word ? wordMasteryMap.get(w.word.toLowerCase().trim()) : undefined);
           return stats ? { ...w, ...stats } : w;
         });
 
