@@ -1,0 +1,32 @@
+﻿# Dependencies
+node_modules/
+
+# Production build outputs
+dist/
+dist-electron/
+
+# Local personal config
+wordbar_config.json
+
+# Logs and temporary files
+*.log
+app.log
+err.log
+out.log
+err.txt
+out.txt
+current_screen.png
+
+# Executables & binary release files (can be distributed via GitHub Releases)
+*.exe
+*.lnk
+
+# OS generated files
+Thumbs.db
+.DS_Store
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
