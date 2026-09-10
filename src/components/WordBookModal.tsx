@@ -185,18 +185,30 @@ export const WordBookModal: React.FC<WordBookModalProps> = ({
                 </div>
               ) : (
                 filteredWords.map((w, idx) => (
-                  <div key={w.id} className="py-2 flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-2 min-w-0">
-                      <span className="font-mono text-white/30 text-[10px] w-6">{idx + 1}</span>
-                      <span className="font-bold text-white text-sm">{w.word}</span>
-                      {w.phonetic && (
-                        <span className="text-white/50 text-xs font-serif">{w.phonetic}</span>
-                      )}
+                  <div key={w.id} className="py-2.5 flex flex-col gap-1">
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span className="font-mono text-white/30 text-[10px] w-6 shrink-0">{idx + 1}</span>
+                        <span className="font-bold text-white text-sm">{w.word}</span>
+                        {w.phonetic && (
+                          <span className="text-white/50 text-xs font-serif">{w.phonetic}</span>
+                        )}
+                      </div>
+
+                      <div className="text-right truncate max-w-sm text-white/85 font-medium">
+                        <span>{w.translation}</span>
+                      </div>
                     </div>
 
-                    <div className="text-right truncate max-w-xs text-white/80">
-                      <span>{w.translation}</span>
-                    </div>
+                    {w.example && (
+                      <div className="pl-8 text-[11px] text-white/55 flex items-center gap-1.5 truncate">
+                        <span className="px-1 py-0.2 rounded bg-amber-400/20 text-amber-300 font-bold text-[9px] shrink-0">例</span>
+                        <span className="truncate text-white/70">{w.example}</span>
+                        {w.exampleTrans && (
+                          <span className="text-white/40 truncate hidden sm:inline">({w.exampleTrans})</span>
+                        )}
+                      </div>
+                    )}
                   </div>
                 ))
               )}

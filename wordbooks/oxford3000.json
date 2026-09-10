@@ -1,0 +1,279 @@
+{
+  "id": "oxford-3000",
+  "title": "牛津3000核心词 (Oxford 3000)",
+  "description": "牛津官方认证的英语最核心、最高频且最实用的3000词汇精选",
+  "isBuiltIn": true,
+  "currentIndex": 0,
+  "words": [
+    {
+      "id": "ox-1",
+      "word": "achieve",
+      "phonetic": "/əˈtʃiːv/",
+      "translation": "vt. 达到，实现；完成，取得",
+      "example": "She worked tirelessly to achieve her childhood ambition.",
+      "exampleTrans": "她不知疲倦地工作以实现儿时的抱负。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-2",
+      "word": "acknowledge",
+      "phonetic": "/əkˈnɑːlɪdʒ/",
+      "translation": "vt. 承认；致谢；告知收到",
+      "example": "He refused to acknowledge his mistake in public.",
+      "exampleTrans": "他拒绝在公开场合承认自己的错误。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-3",
+      "word": "acquire",
+      "phonetic": "/əˈkwaɪər/",
+      "translation": "vt. 获得，习得；学到；收购",
+      "example": "Children acquire their native language naturally from exposure.",
+      "exampleTrans": "孩子们通过日常接触自然地习得母语。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-4",
+      "word": "adapt",
+      "phonetic": "/əˈdæpt/",
+      "translation": "v. 使适应，适合；改编",
+      "example": "Successful species adapt quickly to changing environments.",
+      "exampleTrans": "成功的物种能够迅速适应不断变化的环境。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-5",
+      "word": "adequate",
+      "phonetic": "/ˈædɪkwət/",
+      "translation": "adj. 足够的，充实的；合格胜任的",
+      "example": "The team did not have adequate resources to finish on time.",
+      "exampleTrans": "该团队没有足够的资源按时完成任务。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-6",
+      "word": "advocate",
+      "phonetic": "/ˈædvəkeɪt/",
+      "translation": "vt. 提倡，主张；n. 拥护者，倡导者",
+      "example": "Doctors advocate regular physical exercise for heart health.",
+      "exampleTrans": "医生主张进行规律的体育锻炼以保持心脏健康。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-7",
+      "word": "alter",
+      "phonetic": "/ˈɔːltər/",
+      "translation": "v. 改变，修改，调整",
+      "example": "Little things can alter the entire course of a life.",
+      "exampleTrans": "微小的事情也能彻底改变人生的轨迹。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-8",
+      "word": "apparent",
+      "phonetic": "/əˈpærənt/",
+      "translation": "adj. 显而易见的，明白的；表面的",
+      "example": "It soon became apparent that the plan would not succeed.",
+      "exampleTrans": "很快显而易见的是，该计划不会成功。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-9",
+      "word": "approach",
+      "phonetic": "/əˈproʊtʃ/",
+      "translation": "v. 接近，走近；着手处理；n. 方法，途径",
+      "example": "We decided to adopt a more creative approach to the problem.",
+      "exampleTrans": "我们决定对该问题采取一种更具创造性的方法。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-10",
+      "word": "appropriate",
+      "phonetic": "/əˈproʊpriət/",
+      "translation": "adj. 适当的，得体的，合适的",
+      "example": "Please ensure you wear appropriate attire for the formal meeting.",
+      "exampleTrans": "请确保穿着适合正式会议的得体服装。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-11",
+      "word": "aspect",
+      "phonetic": "/ˈæspekt/",
+      "translation": "n. 方面；面貌；朝向",
+      "example": "We examined every aspect of the proposal before voting.",
+      "exampleTrans": "在投票之前，我们审查了该提案的每一个方面。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-12",
+      "word": "assess",
+      "phonetic": "/əˈses/",
+      "translation": "vt. 评估，评定；估价，征税",
+      "example": "The teacher will assess students based on their coursework.",
+      "exampleTrans": "老师将根据学生的平时作业来评估他们。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-13",
+      "word": "assume",
+      "phonetic": "/əˈsuːm/",
+      "translation": "vt. 假设，假定；承担；呈现",
+      "example": "It is dangerous to assume anything without concrete evidence.",
+      "exampleTrans": "在没有确凿证据的情况下做任何假设都是危险的。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-14",
+      "word": "authority",
+      "phonetic": "/əˈθɔːrəti/",
+      "translation": "n. 权威，威信；官方，当局；专家",
+      "example": "The health authority issued a severe warning to residents.",
+      "exampleTrans": "卫生当局向居民发出了严重警告。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-15",
+      "word": "available",
+      "phonetic": "/əˈveɪləbl/",
+      "translation": "adj. 可获得的，可利用的；有空的",
+      "example": "The new feature is available to all registered users today.",
+      "exampleTrans": "新功能今天已对所有注册用户开放使用。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-16",
+      "word": "benefit",
+      "phonetic": "/ˈbenɪfɪt/",
+      "translation": "n. 利益，好处；v. 有益于；获益",
+      "example": "Both companies will benefit from this strategic partnership.",
+      "exampleTrans": "两家公司都将从这次战略合作中获益。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-17",
+      "word": "capable",
+      "phonetic": "/ˈkeɪpəbl/",
+      "translation": "adj. 有能力的，能干的；有潜力的",
+      "example": "She is fully capable of handling intense pressure.",
+      "exampleTrans": "她完全有能力应对巨大的压力。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-18",
+      "word": "capacity",
+      "phonetic": "/kəˈpæsəti/",
+      "translation": "n. 容量；能力，才能；身份",
+      "example": "The stadium was filled to capacity with excited fans.",
+      "exampleTrans": "体育场里挤满了激动的球迷，座无虚席。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-19",
+      "word": "circumstance",
+      "phonetic": "/ˈsɜːrkəmstæns/",
+      "translation": "n. 条件，环境；状况，境遇",
+      "example": "Under no circumstances should you open suspicious email attachments.",
+      "exampleTrans": "在任何情况下你都不应该打开可疑的邮件附件。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-20",
+      "word": "clarify",
+      "phonetic": "/ˈklærəfaɪ/",
+      "translation": "vt. 阐明，澄清；使纯净",
+      "example": "Could you clarify what you mean by that statement?",
+      "exampleTrans": "你能澄清一下你说那句话的意思吗？",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-21",
+      "word": "commit",
+      "phonetic": "/kəˈmɪt/",
+      "translation": "v. 承诺；致力于；犯(错/罪)；投入",
+      "example": "They committed all their savings to starting the new venture.",
+      "exampleTrans": "他们投入了全部积蓄来开展这项新的创业。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-22",
+      "word": "conduct",
+      "phonetic": "/kənˈdʌkt/",
+      "translation": "vt. 实施，进行；指挥；传导；n. 行为",
+      "example": "Scientists conduct experiments to test their hypotheses.",
+      "exampleTrans": "科学家们进行实验来检验他们的假设。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-23",
+      "word": "confirm",
+      "phonetic": "/kənˈfɜːrm/",
+      "translation": "vt. 证实，确认；批准，使坚信",
+      "example": "The lab tests confirmed that the water was completely safe.",
+      "exampleTrans": "化验结果证实该水源完全安全。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-24",
+      "word": "consequence",
+      "phonetic": "/ˈkɑːnsəkwens/",
+      "translation": "n. 结果，后果；重要性",
+      "example": "He must face the consequences of his own careless actions.",
+      "exampleTrans": "他必须为自己粗心大意的行为承担后果。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-25",
+      "word": "crucial",
+      "phonetic": "/ˈkruːʃl/",
+      "translation": "adj. 关键的，至关重要的；决定性的",
+      "example": "Sleep plays a crucial role in cognitive health and memory.",
+      "exampleTrans": "睡眠对认知健康和记忆力起着至关重要的作用。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-26",
+      "word": "debate",
+      "phonetic": "/dɪˈbeɪt/",
+      "translation": "n./v. 辩论，争论；讨论",
+      "example": "The proposal sparked intense debate among legislators.",
+      "exampleTrans": "该提案在立法者中引发了激烈的辩论。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-27",
+      "word": "demonstrate",
+      "phonetic": "/ˈdemənstreɪt/",
+      "translation": "vt. 演示，示范；论证，证明；游行",
+      "example": "The chef demonstrated how to prepare the classic sauce.",
+      "exampleTrans": "大厨亲自示范了如何调制这款经典酱汁。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-28",
+      "word": "distinct",
+      "phonetic": "/dɪˈstɪŋkt/",
+      "translation": "adj. 截然不同的；清晰的，明显的",
+      "example": "There are three distinct stages in this training program.",
+      "exampleTrans": "在这个培训项目中，有三个截然不同的阶段。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-29",
+      "word": "diversity",
+      "phonetic": "/daɪˈvɜːrsəti/",
+      "translation": "n. 多样性，多样化；差异",
+      "example": "Biodiversity is essential for sustaining healthy ecosystems.",
+      "exampleTrans": "生物多样性对于维持健康的生态系统至关重要。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "ox-30",
+      "word": "emphasize",
+      "phonetic": "/ˈemfəsaɪz/",
+      "translation": "vt. 强调，着重；使突出",
+      "example": "The coach emphasized the importance of teamwork and discipline.",
+      "exampleTrans": "教练着重强调了团队合作与纪律的重要性。",
+      "masteryLevel": 0
+    }
+  ]
+}

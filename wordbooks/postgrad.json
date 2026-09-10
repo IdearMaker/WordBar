@@ -1,0 +1,117 @@
+{
+  "id": "postgrad-core",
+  "title": "考研英语必考核心词",
+  "description": "考研真题熟词生义与长难句核心词汇汇总",
+  "isBuiltIn": true,
+  "currentIndex": 0,
+  "words": [
+    {
+      "id": "pg-1",
+      "word": "paradox",
+      "phonetic": "/ˈpærədɑːks/",
+      "translation": "n. 悖论，反论；看似矛盾却正确的情况",
+      "example": "It is a curious paradox that drinking hot tea cools you down.",
+      "exampleTrans": "喝热茶反而能让人凉快，真是一个奇怪的悖论。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "pg-2",
+      "word": "plausible",
+      "phonetic": "/ˈplɔːzəbl/",
+      "translation": "adj. 看似合理的，合情理的；巧言令色的",
+      "example": "Her explanation sounded plausible at first hearing.",
+      "exampleTrans": "她的解释初听起来似乎很合情理。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "pg-3",
+      "word": "skeptical",
+      "phonetic": "/ˈskeptɪkl/",
+      "translation": "adj. 怀疑的，持怀疑态度的",
+      "example": "Scientists are skeptical about the dramatic claim.",
+      "exampleTrans": "科学家们对这种耸人听闻的说法持怀疑态度。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "pg-4",
+      "word": "inevitable",
+      "phonetic": "/ɪnˈevɪtəbl/",
+      "translation": "adj. 不可避免的，必然发生的；照例的",
+      "example": "Technological disruption is an inevitable part of progress.",
+      "exampleTrans": "技术颠覆是进步过程中不可避免的一部分。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "pg-5",
+      "word": "consensus",
+      "phonetic": "/kənˈsensəs/",
+      "translation": "n. 一致意见，共识",
+      "example": "There is a growing consensus that reform is necessary.",
+      "exampleTrans": "越来越多的人达成共识，认为改革势在必行。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "pg-6",
+      "word": "scrutinize",
+      "phonetic": "/ˈskruːtənaɪz/",
+      "translation": "vt. 仔细检查，认真审视",
+      "example": "The committee will scrutinize every detail of the agreement.",
+      "exampleTrans": "委员会将严加审视协议的每一个细节。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "pg-7",
+      "word": "unprecedented",
+      "phonetic": "/ʌnˈpresɪdentɪd/",
+      "translation": "adj. 前所未有的，空前的",
+      "example": "The pandemic caused unprecedented economic disruption.",
+      "exampleTrans": "疫情造成了前所未有的经济动荡。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "pg-8",
+      "word": "paradigm",
+      "phonetic": "/ˈpærədaɪm/",
+      "translation": "n. 范式，模式；典范",
+      "example": "This discovery represents a shift in our scientific paradigm.",
+      "exampleTrans": "这一发现代表了我们科学范式的转变。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "pg-9",
+      "word": "conspicuous",
+      "phonetic": "/kənˈspɪkjuəs/",
+      "translation": "adj. 显眼的，引人注目的",
+      "example": "She felt very conspicuous in her bright red dress.",
+      "exampleTrans": "穿著鲜艳的红裙子让她觉得格外引人注目。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "pg-10",
+      "word": "epiphany",
+      "phonetic": "/ɪˈpɪfəni/",
+      "translation": "n. 顿悟，突然的大彻大悟",
+      "example": "He had an epiphany while walking alone in the quiet forest.",
+      "exampleTrans": "独自在安静的森林里散步时，他突然顿悟了。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "pg-11",
+      "word": "hypocrisy",
+      "phonetic": "/hɪˈpɑːkrəsi/",
+      "translation": "n. 虚伪，伪善",
+      "example": "He condemned the hypocrisy of politicians making false promises.",
+      "exampleTrans": "他谴责了政客们做虚假承诺的虚伪面目。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "pg-12",
+      "word": "ubiquity",
+      "phonetic": "/juːˈbɪkwəti/",
+      "translation": "n. 普遍存在，无所不在",
+      "example": "The ubiquity of social media has changed how we socialize.",
+      "exampleTrans": "社交媒体的无所不在改变了我们的社交方式。",
+      "masteryLevel": 0
+    }
+  ]
+}

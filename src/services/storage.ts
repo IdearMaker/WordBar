@@ -34,25 +34,65 @@ export const defaultStats: StudyStats = {
 
 export const storage = {
   loadWordbooks(): WordBook[] {
+    let books: WordBook[] = defaultWordbooks;
     const diskBooks = (window as any)?.electronAPI?.initialConfig?.wordbooks;
-    if (Array.isArray(diskBooks) && diskBooks.length > 0) {
-      return diskBooks;
-    }
-    try {
-      const data = localStorage.getItem(STORAGE_KEYS.WORDBOOKS);
-      if (!data) {
-        this.saveWordbooks(defaultWordbooks);
-        return defaultWordbooks;
+    const rawLocal = localStorage.getItem(STORAGE_KEYS.WORDBOOKS);
+    let candidate: WordBook[] | null = (Array.isArray(diskBooks) && diskBooks.length > 0) ? diskBooks : null;
+
+    if (!candidate && rawLocal) {
+      try {
+        const parsed = JSON.parse(rawLocal);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          candidate = parsed;
+        }
+      } catch (e) {
+        console.error('Failed to load wordbooks:', e);
       }
-      const parsed = JSON.parse(data);
-      if (!Array.isArray(parsed) || parsed.length === 0) {
-        return defaultWordbooks;
-      }
-      return parsed;
-    } catch (e) {
-      console.error('Failed to load wordbooks:', e);
-      return defaultWordbooks;
     }
+
+    if (candidate) {
+      const candidateBookMap = new Map<string, WordBook>();
+      const customBooks: WordBook[] = [];
+
+      for (const b of candidate) {
+        if (b.isBuiltIn) {
+          candidateBookMap.set(b.id, b);
+        } else {
+          customBooks.push(b);
+        }
+      }
+
+      const mergedBuiltIns = defaultWordbooks.map((defBook) => {
+        const existingBook = candidateBookMap.get(defBook.id);
+        if (!existingBook) {
+          return defBook;
+        }
+        const wordMasteryMap = new Map<string, any>();
+        for (const w of existingBook.words) {
+          wordMasteryMap.set(w.id, {
+            masteryLevel: w.masteryLevel,
+            lastReviewed: w.lastReviewed,
+            reviewCount: w.reviewCount,
+          });
+        }
+
+        const updatedWords = defBook.words.map((w) => {
+          const stats = wordMasteryMap.get(w.id);
+          return stats ? { ...w, ...stats } : w;
+        });
+
+        return {
+          ...defBook,
+          currentIndex: Math.min(existingBook.currentIndex || 0, Math.max(0, updatedWords.length - 1)),
+          words: updatedWords,
+        };
+      });
+
+      books = [...mergedBuiltIns, ...customBooks];
+    }
+
+    this.saveWordbooks(books);
+    return books;
   },
 
   saveWordbooks(books: WordBook[]) {

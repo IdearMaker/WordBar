@@ -1,0 +1,99 @@
+{
+  "id": "daily-tech",
+  "title": "职场与编程核心高频词",
+  "description": "日常计算机、开发及职场协作常用核心英语",
+  "isBuiltIn": true,
+  "currentIndex": 0,
+  "words": [
+    {
+      "id": "dt-1",
+      "word": "concurrency",
+      "phonetic": "/kənˈkɜːrənsi/",
+      "translation": "n. 并发，并发性；同时发生",
+      "example": "Go handles concurrency exceptionally well with goroutines.",
+      "exampleTrans": "Go 语言通过 goroutine 极其出色地处理并发。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "dt-2",
+      "word": "deprecated",
+      "phonetic": "/ˈdeprəkeɪtɪd/",
+      "translation": "adj. 已弃用的，不推荐使用的",
+      "example": "This API method has been deprecated in the latest release.",
+      "exampleTrans": "该 API 方法已在最新版本中被弃用。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "dt-3",
+      "word": "latency",
+      "phonetic": "/ˈleɪtnsi/",
+      "translation": "n. 延迟，潜伏期；等待时间",
+      "example": "We optimized the database to minimize query latency.",
+      "exampleTrans": "我们优化了数据库以将查询延迟降至最低。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "dt-4",
+      "word": "throughput",
+      "phonetic": "/ˈθruːpʊt/",
+      "translation": "n. 吞吐量，生产量",
+      "example": "The new server architecture doubled our network throughput.",
+      "exampleTrans": "新服务器架构使我们的网络吞吐量翻倍。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "dt-5",
+      "word": "authenticate",
+      "phonetic": "/ɔːˈθentɪkeɪt/",
+      "translation": "vt. 验证，鉴定；身份认证",
+      "example": "Users must authenticate their identity using 2FA.",
+      "exampleTrans": "用户必须通过双重认证验证身份。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "dt-6",
+      "word": "persistent",
+      "phonetic": "/pərˈsɪstənt/",
+      "translation": "adj. 持久的；坚持不懈的；持久化的",
+      "example": "Redis provides persistent storage on disk.",
+      "exampleTrans": "Redis 提供了磁盘上的持久化存储能力。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "dt-7",
+      "word": "idempotent",
+      "phonetic": "/ˌaɪdəmˈpoʊtnt/",
+      "translation": "adj. 幂等的（多次操作结果一致）",
+      "example": "HTTP GET and PUT requests should always be idempotent.",
+      "exampleTrans": "HTTP GET 和 PUT 请求应当始终具备幂等性。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "dt-8",
+      "word": "asynchronous",
+      "phonetic": "/eɪˈsɪŋkrənəs/",
+      "translation": "adj. 异步的；不同时的",
+      "example": "Async/await makes asynchronous JavaScript code easy to read.",
+      "exampleTrans": "Async/await 让异步 JavaScript 代码清晰易读。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "dt-9",
+      "word": "scalability",
+      "phonetic": "/ˌskeɪləˈbɪləti/",
+      "translation": "n. 可扩展性，可伸缩性",
+      "example": "Cloud computing ensures infinite scalability for modern web apps.",
+      "exampleTrans": "云计算为现代网络应用提供了几乎无限的可扩展性。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "dt-10",
+      "word": "refactor",
+      "phonetic": "/ˌriːˈfæktər/",
+      "translation": "vt. 重构（在不改变功能的前提下优化代码结构）",
+      "example": "We need to refactor this legacy module to improve maintainability.",
+      "exampleTrans": "我们需要重构这个旧模块以提高可维护性。",
+      "masteryLevel": 0
+    }
+  ]
+}

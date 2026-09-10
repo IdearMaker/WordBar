@@ -1,0 +1,189 @@
+{
+  "id": "cet4-core",
+  "title": "大学英语四级核心词 (CET-4)",
+  "description": "四级高频考点词汇，涵盖阅读与写作高频出现词",
+  "isBuiltIn": true,
+  "currentIndex": 0,
+  "words": [
+    {
+      "id": "c4-1",
+      "word": "abandon",
+      "phonetic": "/əˈbændən/",
+      "translation": "vt. 放弃，遗弃；n. 放任，放肆",
+      "example": "They had to abandon the plan due to bad weather.",
+      "exampleTrans": "由于恶劣的天气，他们不得不放弃该计划。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-2",
+      "word": "ability",
+      "phonetic": "/əˈbɪləti/",
+      "translation": "n. 能力，才智；能耐",
+      "example": "She has an extraordinary ability to solve complex problems.",
+      "exampleTrans": "她具有解决复杂问题的非凡能力。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-3",
+      "word": "absolute",
+      "phonetic": "/ˈæbsəluːt/",
+      "translation": "adj. 绝对的；完全的；确定无疑的",
+      "example": "I have absolute confidence in your ability.",
+      "exampleTrans": "我对你的能力有着绝对的信心。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-4",
+      "word": "academic",
+      "phonetic": "/ˌækəˈdemɪk/",
+      "translation": "adj. 学术的；理论的；高等院校的",
+      "example": "He achieved high academic honors at university.",
+      "exampleTrans": "他在大学里获得了很高的学术荣誉。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-5",
+      "word": "barrier",
+      "phonetic": "/ˈbæriər/",
+      "translation": "n. 障碍，屏障；栅栏；阻碍",
+      "example": "Language should not be a barrier to communication.",
+      "exampleTrans": "语言不应成为沟通的障碍。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-6",
+      "word": "campaign",
+      "phonetic": "/kæmˈpeɪn/",
+      "translation": "n. 战役；运动，竞选活动；vi. 领导运动",
+      "example": "They launched a campaign to protect the environment.",
+      "exampleTrans": "他们发起了一场保护环境的运动。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-7",
+      "word": "candidate",
+      "phonetic": "/ˈkændɪdət/",
+      "translation": "n. 候选人；应试者；申请求职者",
+      "example": "He is the best candidate for this position.",
+      "exampleTrans": "他是这个职位的最佳人选。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-8",
+      "word": "deliberate",
+      "phonetic": "/dɪˈlɪbərət/",
+      "translation": "adj. 蓄意的，存心的；慎重的；v. 仔细考虑",
+      "example": "It was a deliberate attempt to mislead the public.",
+      "exampleTrans": "这是蓄意误导公众的企图。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-9",
+      "word": "efficient",
+      "phonetic": "/ɪˈfɪʃnt/",
+      "translation": "adj. 效率高的，有能力的",
+      "example": "We need to find a more efficient way to process data.",
+      "exampleTrans": "我们需要找到一种更有效率的数据处理方法。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-10",
+      "word": "fascinate",
+      "phonetic": "/ˈfæsɪneɪt/",
+      "translation": "vt. 迷住，使着迷；强烈吸引",
+      "example": "Science and technology fascinate young generations.",
+      "exampleTrans": "科学与技术深深吸引着年轻一代。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-11",
+      "word": "guarantee",
+      "phonetic": "/ˌɡærənˈtiː/",
+      "translation": "vt. 保证，担保；n. 保证书；担保物",
+      "example": "Hard work doesn't always guarantee success, but it helps.",
+      "exampleTrans": "努力不一定能保证成功，但总是有帮助的。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-12",
+      "word": "highlight",
+      "phonetic": "/ˈhaɪlaɪt/",
+      "translation": "vt. 强调，突出；n. 最精彩的部分",
+      "example": "The report highlighted the importance of digital literacy.",
+      "exampleTrans": "该报告强调了数字素养的重要性。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-13",
+      "word": "immense",
+      "phonetic": "/ɪˈmens/",
+      "translation": "adj. 巨大的，广大的；极大的",
+      "example": "The project required an immense amount of time and effort.",
+      "exampleTrans": "该项目需要耗费大量的时间和精力。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-14",
+      "word": "justify",
+      "phonetic": "/ˈdʒʌstɪfaɪ/",
+      "translation": "vt. 证明…是正当的；为…辩护",
+      "example": "Nothing can justify such rude behavior.",
+      "exampleTrans": "没有什么能为如此无礼的行为辩护。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-15",
+      "word": "keen",
+      "phonetic": "/kiːn/",
+      "translation": "adj. 热心的，渴望的；敏锐的；激烈的",
+      "example": "She has a keen interest in modern architecture.",
+      "exampleTrans": "她对现代建筑有着浓厚的兴趣。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-16",
+      "word": "launch",
+      "phonetic": "/lɔːntʃ/",
+      "translation": "v. 发射；发动；发起；推出；n. 发射；投放市场",
+      "example": "The company plans to launch a new product next month.",
+      "exampleTrans": "该公司计划下个月推出一款新产品。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-17",
+      "word": "maintain",
+      "phonetic": "/meɪnˈteɪn/",
+      "translation": "vt. 维持，保持；坚持；主张；维修，保养",
+      "example": "It is vital to maintain a positive attitude under stress.",
+      "exampleTrans": "在压力下保持积极的心态至关重要。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-18",
+      "word": "negotiate",
+      "phonetic": "/nɪˈɡoʊʃieɪt/",
+      "translation": "v. 谈判，协商；商定，达成协议",
+      "example": "The union is negotiating for higher wages and better benefits.",
+      "exampleTrans": "工会正在谈判以争取更高的工资和更好的福利。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-19",
+      "word": "obstacle",
+      "phonetic": "/ˈɑːbstəkl/",
+      "translation": "n. 障碍，绊脚石；妨碍",
+      "example": "Fear of failure is the greatest obstacle to success.",
+      "exampleTrans": "对失败的恐惧是成功最大的障碍。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c4-20",
+      "word": "persevere",
+      "phonetic": "/ˌpɜːrsəˈvɪr/",
+      "translation": "vi. 坚持不懈，百折不挠",
+      "example": "If you persevere with your studies, you will surely succeed.",
+      "exampleTrans": "如果你坚持不懈地学习，你一定会成功的。",
+      "masteryLevel": 0
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "id": "cet6-core",
+  "title": "大学英语六级进阶词 (CET-6)",
+  "description": "六级核心高分必记词汇，提升深度阅读理解力",
+  "isBuiltIn": true,
+  "currentIndex": 0,
+  "words": [
+    {
+      "id": "c6-1",
+      "word": "ambiguous",
+      "phonetic": "/æmˈbɪɡjuəs/",
+      "translation": "adj. 模棱两可的，不明确的",
+      "example": "His reply to the question was ambiguous.",
+      "exampleTrans": "他对那个问题的回答模棱两可。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c6-2",
+      "word": "comprehensive",
+      "phonetic": "/ˌkɑːmprɪˈhensɪv/",
+      "translation": "adj. 全面的，综合的；包罗万象的",
+      "example": "We offer a comprehensive guide for beginners.",
+      "exampleTrans": "我们为初学者提供全面的指南。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c6-3",
+      "word": "deteriorate",
+      "phonetic": "/dɪˈtɪriəreɪt/",
+      "translation": "vi. 恶化，退化，变坏",
+      "example": "The patient's condition began to deteriorate rapidly.",
+      "exampleTrans": "病人的病情开始迅速恶化。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c6-4",
+      "word": "extravagant",
+      "phonetic": "/ɪkˈstrævəɡənt/",
+      "translation": "adj. 奢侈的，铺张的；过度的，不切实际的",
+      "example": "He warned against extravagant spending.",
+      "exampleTrans": "他警告不要挥霍浪费。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c6-5",
+      "word": "indispensable",
+      "phonetic": "/ˌɪndɪˈspensəbl/",
+      "translation": "adj. 不可缺少的，绝对必需的",
+      "example": "A good dictionary is indispensable for language learners.",
+      "exampleTrans": "一本好的词典对于语言学习者来说是不可或缺的。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c6-6",
+      "word": "meticulous",
+      "phonetic": "/məˈtɪkjələs/",
+      "translation": "adj. 一丝不苟的，极细致的",
+      "example": "She did meticulous research for her new book.",
+      "exampleTrans": "她为她的新书做了极其严谨细致的研究。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c6-7",
+      "word": "preliminary",
+      "phonetic": "/prɪˈlɪmɪneri/",
+      "translation": "adj. 初步的，预备的；n. 初步行动",
+      "example": "The preliminary results of the test are promising.",
+      "exampleTrans": "测试的初步结果令人鼓舞。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c6-8",
+      "word": "spontaneous",
+      "phonetic": "/spɑːnˈteɪniəs/",
+      "translation": "adj. 自发的，自然的；一时冲动的",
+      "example": "The crowd burst into spontaneous applause.",
+      "exampleTrans": "人群爆发出一阵自发的掌声。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c6-9",
+      "word": "vulnerable",
+      "phonetic": "/ˈvʌlnərəbl/",
+      "translation": "adj. 脆弱的，易受伤害的；有弱点的",
+      "example": "Old people are particularly vulnerable to the virus.",
+      "exampleTrans": "老年人特别容易受到这种病毒的感染。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c6-10",
+      "word": "subtle",
+      "phonetic": "/ˈsʌtl/",
+      "translation": "adj. 微妙的，隐约的；巧妙的，敏锐的",
+      "example": "There is a subtle difference between the two terms.",
+      "exampleTrans": "这两个术语之间有着微妙的区别。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c6-11",
+      "word": "arbitrary",
+      "phonetic": "/ˈɑːrbətreri/",
+      "translation": "adj. 随意的，任性的；专断的，独裁的",
+      "example": "The choice of players seemed completely arbitrary.",
+      "exampleTrans": "选手的选择似乎完全是随意的。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c6-12",
+      "word": "coherent",
+      "phonetic": "/koʊˈhɪrənt/",
+      "translation": "adj. 条理清晰的，连贯的；一致的",
+      "example": "He failed to present a coherent argument.",
+      "exampleTrans": "他未能提出一个逻辑连贯的论点。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c6-13",
+      "word": "dilemma",
+      "phonetic": "/dɪˈlemə/",
+      "translation": "n. 进退两难的困境；窘境",
+      "example": "She faced a painful dilemma between career and family.",
+      "exampleTrans": "她在事业与家庭之间面临着痛苦的抉择。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c6-14",
+      "word": "eloquent",
+      "phonetic": "/ˈeləkwənt/",
+      "translation": "adj. 雄辩的，有说服力的；动人的",
+      "example": "The president gave an eloquent speech on equality.",
+      "exampleTrans": "总统发表了一场关于平等的雄辩演讲。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "c6-15",
+      "word": "feasibility",
+      "phonetic": "/ˌfiːzəˈbɪləti/",
+      "translation": "n. 可行性，可行程度",
+      "example": "We are conducting a study to assess the project's feasibility.",
+      "exampleTrans": "我们正在进行一项研究以评估该项目的可行性。",
+      "masteryLevel": 0
+    }
+  ]
+}

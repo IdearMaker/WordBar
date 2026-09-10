@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { WordItem, ThemeSettings, StudyStats, StudyMode } from '../types';
 import {
   Volume2,
@@ -66,6 +66,10 @@ export const WordBar: React.FC<WordBarProps> = ({
   const [isHoverRevealed, setIsHoverRevealed] = useState(false);
   const [showExample, setShowExample] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
+
+  useEffect(() => {
+    setShowExample(false);
+  }, [currentWord?.id]);
 
   const barHeight = theme.barHeight || 58;
   const isCompact = barHeight <= 48;
@@ -317,58 +321,92 @@ export const WordBar: React.FC<WordBarProps> = ({
             </button>
           </div>
 
-          {/* Divider & Translation (Hidden in quiz mode so the answer isn't spoiled!) */}
+          {/* Divider & Translation / Example Display (Hidden in quiz mode so the answer isn't spoiled!) */}
           {studyMode !== 'quiz' && (
             <>
-              <div className="h-4 w-px bg-white/20" />
+              <div className="h-4 w-px bg-white/20 shrink-0" />
 
-              <div
-                onMouseEnter={() => setIsHoverRevealed(true)}
-                onMouseLeave={() => setIsHoverRevealed(false)}
-                className="flex items-center gap-2 max-w-[420px] cursor-pointer"
-                style={{ WebkitAppRegion: 'no-drag' } as any}
-                title={theme.showTranslationAlways ? currentWord.translation : '悬浮或按空格键查看释义'}
-              >
-                {isTranslationVisible ? (
-                  <span className={`${transFontClass} font-medium text-white/90 truncate animate-fade-in`}>
-                    {currentWord.translation}
+              {showExample && currentWord.example ? (
+                /* Inline bilingual example sentence card (Never clipped by window borders) */
+                <div
+                  className="flex items-center gap-2 max-w-[620px] bg-black/60 border border-amber-400/50 rounded-xl px-2.5 py-1 text-xs animate-fade-in shadow-xl backdrop-blur-md"
+                  style={{ WebkitAppRegion: 'no-drag' } as any}
+                >
+                  <span className="px-1.5 py-0.5 rounded bg-amber-400/25 text-amber-300 font-extrabold text-[10px] tracking-wide shrink-0 ring-1 ring-amber-400/40">
+                    例句
                   </span>
-                ) : (
-                  <span className="flex items-center gap-1.5 text-xs text-white/40 italic bg-white/5 px-2 py-0.5 rounded">
-                    <EyeOff className="w-3 h-3" />
-                    <span>悬浮或按空格显释义</span>
-                  </span>
-                )}
 
-                {/* Example icon / popup toggle */}
-                {currentWord.example && (
+                  <div className="flex flex-col min-w-0 max-w-[460px]">
+                    <span className="text-white font-medium text-xs truncate select-text leading-tight" title={currentWord.example}>
+                      {currentWord.example}
+                    </span>
+                    {currentWord.exampleTrans && (
+                      <span className="text-white/70 text-[11px] truncate select-text leading-tight mt-0.5" title={currentWord.exampleTrans}>
+                        {currentWord.exampleTrans}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Read example sentence aloud via TTS */}
                   <button
-                    onClick={() => setShowExample(!showExample)}
-                    className={`p-0.5 rounded text-[10px] px-1 font-bold border transition-colors ${
-                      showExample
-                        ? 'bg-duo-yellow/20 border-duo-yellow text-duo-yellow'
-                        : 'bg-white/5 border-white/10 text-white/40 hover:text-white/80'
-                    }`}
-                    title="查看双语例句"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      tts.speak(currentWord.example!);
+                    }}
+                    className="p-1 rounded-full text-amber-300/80 hover:text-amber-300 hover:bg-white/10 shrink-0 transition-all active:scale-95"
+                    title="朗读例句"
                   >
-                    例
+                    <Volume2 className="w-3.5 h-3.5" />
                   </button>
-                )}
-              </div>
-            </>
-          )}
 
-          {/* Example sentence floating banner */}
-          {showExample && currentWord.example && (
-            <div
-              className="absolute -top-12 left-1/2 -translate-x-1/2 bg-neutral-900/95 border border-white/20 text-white px-3 py-1.5 rounded-lg shadow-xl text-xs max-w-lg truncate animate-fade-in z-50 flex flex-col gap-0.5"
-              style={{ WebkitAppRegion: 'no-drag' } as any}
-            >
-              <div className="text-white/95 font-medium truncate">{currentWord.example}</div>
-              {currentWord.exampleTrans && (
-                <div className="text-white/60 text-[11px] truncate">{currentWord.exampleTrans}</div>
+                  {/* Close example banner to return to translation */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setShowExample(false);
+                    }}
+                    className="p-1 rounded-full text-white/40 hover:text-white hover:bg-white/10 shrink-0 transition-colors"
+                    title="返回单词释义"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              ) : (
+                /* Standard Translation display */
+                <div
+                  onMouseEnter={() => setIsHoverRevealed(true)}
+                  onMouseLeave={() => setIsHoverRevealed(false)}
+                  className="flex items-center gap-2 max-w-[420px] cursor-pointer"
+                  style={{ WebkitAppRegion: 'no-drag' } as any}
+                  title={theme.showTranslationAlways ? currentWord.translation : '悬浮或按空格键查看释义'}
+                >
+                  {isTranslationVisible ? (
+                    <span className={`${transFontClass} font-medium text-white/90 truncate animate-fade-in`}>
+                      {currentWord.translation}
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-1.5 text-xs text-white/40 italic bg-white/5 px-2 py-0.5 rounded">
+                      <EyeOff className="w-3 h-3" />
+                      <span>悬浮或按空格显释义</span>
+                    </span>
+                  )}
+
+                  {/* Example icon / popup toggle */}
+                  {currentWord.example && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setShowExample(true);
+                      }}
+                      className="p-0.5 rounded text-[10px] px-1.5 font-bold border transition-all bg-white/10 border-white/20 text-white/70 hover:text-amber-300 hover:border-amber-400/60 hover:bg-amber-400/20 shadow-sm"
+                      title="点击展开双语例句"
+                    >
+                      例
+                    </button>
+                  )}
+                </div>
               )}
-            </div>
+            </>
           )}
         </div>
       )}

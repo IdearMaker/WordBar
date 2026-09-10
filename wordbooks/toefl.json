@@ -1,0 +1,99 @@
+{
+  "id": "ielts-toefl",
+  "title": "托福 / 雅思学术高频词",
+  "description": "听说读写必备学术词汇库，冲击 7.5+ / 105+ 必备",
+  "isBuiltIn": true,
+  "currentIndex": 0,
+  "words": [
+    {
+      "id": "it-1",
+      "word": "ubiquitous",
+      "phonetic": "/juːˈbɪkwɪtəs/",
+      "translation": "adj. 无所不在的，普遍存在的",
+      "example": "Smartphones have become ubiquitous in modern society.",
+      "exampleTrans": "智能手机在现代社会中已变得无处不在。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "it-2",
+      "word": "resilient",
+      "phonetic": "/rɪˈzɪliənt/",
+      "translation": "adj. 有弹性的；能迅速恢复的，适应力强的",
+      "example": "Ecosystems are often more resilient than we anticipate.",
+      "exampleTrans": "生态系统的复原力往往比我们预期的更强。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "it-3",
+      "word": "ephemeral",
+      "phonetic": "/ɪˈfemərəl/",
+      "translation": "adj. 短暂的，瞬息即逝的",
+      "example": "Fashion trends are notoriously ephemeral.",
+      "exampleTrans": "时尚潮流以瞬息即逝而闻名。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "it-4",
+      "word": "pragmatic",
+      "phonetic": "/præɡˈmætɪk/",
+      "translation": "adj. 务实的，注重实际的，实用主义的",
+      "example": "We must adopt a pragmatic approach to climate policy.",
+      "exampleTrans": "我们必须对气候政策采取务实的态度。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "it-5",
+      "word": "prolific",
+      "phonetic": "/prəˈlɪfɪk/",
+      "translation": "adj. 多产的，丰富的；富于创造力的",
+      "example": "Picasso was one of the most prolific artists of all time.",
+      "exampleTrans": "毕加索是有史以来最多产的艺术家之一。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "it-6",
+      "word": "alleviate",
+      "phonetic": "/əˈliːvieɪt/",
+      "translation": "vt. 减轻，缓和，缓解",
+      "example": "Measures were taken to alleviate traffic congestion.",
+      "exampleTrans": "已采取措施缓解交通拥堵。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "it-7",
+      "word": "juxtaposition",
+      "phonetic": "/ˌdʒʌkstəpəˈzɪʃn/",
+      "translation": "n. 并置，并列对比",
+      "example": "The unexpected juxtaposition of classical and modern music fascinated listeners.",
+      "exampleTrans": "古典音乐与现代音乐意想不到的并置让听众着迷。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "it-8",
+      "word": "surreptitious",
+      "phonetic": "/ˌsɜːrəpˈtɪʃəs/",
+      "translation": "adj. 秘密的，鬼鬼祟祟的",
+      "example": "She made a surreptitious glance at her watch during the meeting.",
+      "exampleTrans": "开会时她偷偷看了一眼手表。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "it-9",
+      "word": "equilibrium",
+      "phonetic": "/ˌiːkwɪˈlɪbriəm/",
+      "translation": "n. 平衡，均衡；平静",
+      "example": "Supply and demand eventually reach a state of equilibrium.",
+      "exampleTrans": "供需关系最终会达到一种均衡状态。",
+      "masteryLevel": 0
+    },
+    {
+      "id": "it-10",
+      "word": "quintessential",
+      "phonetic": "/ˌkwɪntɪˈsenʃl/",
+      "translation": "adj. 典型的，最具有代表性的",
+      "example": "It is the quintessential example of British countryside charm.",
+      "exampleTrans": "这是英国乡村风情最具代表性的典范。",
+      "masteryLevel": 0
+    }
+  ]
+}
