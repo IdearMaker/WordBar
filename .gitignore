@@ -1,4 +1,4 @@
-﻿# Dependencies
+# Dependencies
 node_modules/
 
 # Production build outputs
@@ -20,6 +20,11 @@ current_screen.png
 # Executables & binary release files (can be distributed via GitHub Releases)
 *.exe
 *.lnk
+
+# Local runner and batch scripts
+*.bat
+*.vbs
+Launcher.cs
 
 # OS generated files
 Thumbs.db
