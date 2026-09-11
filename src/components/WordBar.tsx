@@ -20,12 +20,15 @@ import {
   Pause,
 } from 'lucide-react';
 import { tts } from '../services/tts';
+import { getThemeStyles } from '../styles/themeHelper';
 
 interface WordBarProps {
-  currentWord: WordItem;
+  currentWord?: WordItem;
   totalWords: number;
   currentIndex: number;
   wordbookTitle: string;
+  isSpecialBook?: 'hard' | 'mastered';
+  onReturnToRegularBook?: () => void;
   theme: ThemeSettings;
   stats: StudyStats;
   studyMode: StudyMode;
@@ -48,6 +51,8 @@ export const WordBar: React.FC<WordBarProps> = ({
   totalWords,
   currentIndex,
   wordbookTitle,
+  isSpecialBook,
+  onReturnToRegularBook,
   theme,
   stats,
   studyMode,
@@ -63,6 +68,7 @@ export const WordBar: React.FC<WordBarProps> = ({
   accentColor,
   onUpdateTheme,
 }) => {
+  const { textColor } = getThemeStyles(theme);
   const [isHoverRevealed, setIsHoverRevealed] = useState(false);
   const [showExample, setShowExample] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
@@ -141,7 +147,9 @@ export const WordBar: React.FC<WordBarProps> = ({
 
   const handleSpeak = (e: React.MouseEvent) => {
     e.stopPropagation();
-    tts.speak(currentWord.word);
+    if (currentWord) {
+      tts.speak(currentWord.word);
+    }
   };
 
   const handleMinimize = () => {
@@ -205,18 +213,33 @@ export const WordBar: React.FC<WordBarProps> = ({
             }}
           />
           <div className="flex flex-col leading-tight justify-center">
-            <span className={`${brandTitleClass} font-bold text-white tracking-wide`}>WordBar</span>
+            <span className={`${brandTitleClass} font-bold tracking-wide`} style={{ color: textColor }}>WordBar</span>
             <span className={`${brandSubClass} text-cyan-300/80 tracking-tight font-medium -mt-0.5`}>
               -Made by YuDan
             </span>
           </div>
         </div>
 
+        {/* Special training mode badge */}
+        {isSpecialBook === 'hard' && (
+          <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-duo-red/20 text-duo-red text-[11px] font-bold ring-1 ring-duo-red/40 shrink-0" title="当前正处于生词强化训练模式">
+            <Flame className="w-3 h-3 text-duo-red animate-pulse" />
+            <span className="hidden sm:inline">生词强化</span>
+          </div>
+        )}
+
+        {isSpecialBook === 'mastered' && (
+          <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-duo-green/20 text-duo-green text-[11px] font-bold ring-1 ring-duo-green/40 shrink-0" title="当前正处于熟词温故模式">
+            <CheckCircle2 className="w-3 h-3 text-duo-green" />
+            <span className="hidden sm:inline">熟词温故</span>
+          </div>
+        )}
+
         {/* Pin to taskbar button */}
         <button
           onClick={handleResetPosition}
-          className={`${actionBtnClass} text-white/40 hover:text-white/90 hover:bg-white/10 rounded transition-colors`}
-          style={{ WebkitAppRegion: 'no-drag' } as any}
+          className={`${actionBtnClass} hover:bg-white/10 rounded transition-colors`}
+          style={{ WebkitAppRegion: 'no-drag', color: textColor, opacity: 0.6 } as any}
           title="重置并吸附到任务栏正上方"
         >
           <Pin className={smallIconClass} />
@@ -229,37 +252,55 @@ export const WordBar: React.FC<WordBarProps> = ({
           style={{ WebkitAppRegion: 'no-drag' } as any}
           title={`词库选择与单词管理 (${wordbookTitle})`}
         >
-          <BookOpen className={`${iconClass} text-duo-green`} />
+          <BookOpen className={`${iconClass} ${isSpecialBook === 'hard' ? 'text-duo-red' : 'text-duo-green'}`} />
         </button>
 
         {/* Progress index */}
-        <span className="text-[11px] font-mono text-white/50">
-          {currentIndex + 1}/{totalWords}
+        <span className="text-[11px] font-mono" style={{ color: textColor, opacity: 0.65 }}>
+          {totalWords > 0 ? `${currentIndex + 1}/${totalWords}` : '0/0'}
         </span>
       </div>
 
       {/* Center Area: Word, Phonetic, Pronunciation & Translation */}
-      {isSpacious && studyMode !== 'quiz' ? (
+      {!currentWord || totalWords === 0 ? (
+        <div
+          className="flex-1 flex items-center justify-center gap-3 px-4 min-w-0"
+          style={{ WebkitAppRegion: 'drag' } as any}
+        >
+          <span className="text-sm font-bold text-duo-green flex items-center gap-1.5 animate-bounce-short">
+            🎉 太棒了！当前生词本已全部掌握！
+          </span>
+          {onReturnToRegularBook && (
+            <button
+              onClick={onReturnToRegularBook}
+              style={{ WebkitAppRegion: 'no-drag' } as any}
+              className="px-3 py-1 rounded-lg bg-duo-green hover:bg-duo-darkGreen text-white text-xs font-bold transition-all shadow-md active:scale-95 cursor-pointer"
+            >
+              返回原词库
+            </button>
+          )}
+        </div>
+      ) : isSpacious && studyMode !== 'quiz' ? (
         <div
           className="flex-1 flex flex-col items-center justify-center gap-0.5 px-4 min-w-0"
           style={{ WebkitAppRegion: 'drag' } as any}
         >
           {/* Top Row: Word + Phonetic + Pronounce */}
           <div className="flex items-center gap-2.5">
-            <span className={`${wordFontClass} tracking-wide font-sans text-white drop-shadow-sm`}>
+            <span className={`${wordFontClass} tracking-wide font-sans drop-shadow-sm`} style={{ color: textColor }}>
               {currentWord.word}
             </span>
 
             {currentWord.phonetic && (
-              <span className={`${phoneticFontClass} font-serif text-white/60`}>
+              <span className={`${phoneticFontClass} font-serif`} style={{ color: textColor, opacity: 0.7 }}>
                 {currentWord.phonetic}
               </span>
             )}
 
             <button
               onClick={handleSpeak}
-              className="p-1 rounded-full bg-white/10 hover:bg-white/25 text-white/80 hover:text-white transition-all transform active:scale-95"
-              style={{ WebkitAppRegion: 'no-drag' } as any}
+              className="p-1 rounded-full bg-white/10 hover:bg-white/25 transition-all transform active:scale-95"
+              style={{ WebkitAppRegion: 'no-drag', color: textColor } as any}
               title="发音 (快捷键 P)"
             >
               <Volume2 className={`${smallIconClass} text-duo-blue`} />
@@ -275,18 +316,18 @@ export const WordBar: React.FC<WordBarProps> = ({
             title={theme.showTranslationAlways ? currentWord.translation : '悬浮或按空格键查看释义'}
           >
             {isTranslationVisible ? (
-              <span className={`${transFontClass} font-medium text-white/90 truncate animate-fade-in`}>
+              <span className={`${transFontClass} font-medium truncate animate-fade-in`} style={{ color: textColor, opacity: 0.95 }}>
                 {currentWord.translation}
               </span>
             ) : (
-              <span className="flex items-center gap-1.5 text-xs text-white/40 italic bg-white/5 px-2 py-0.5 rounded">
+              <span className="flex items-center gap-1.5 text-xs italic bg-white/5 px-2 py-0.5 rounded" style={{ color: textColor, opacity: 0.5 }}>
                 <EyeOff className="w-3 h-3" />
                 <span>悬浮或按空格显释义</span>
               </span>
             )}
 
             {currentWord.example && (
-              <span className="text-xs text-white/50 italic truncate border-l border-white/20 pl-2">
+              <span className="text-xs italic truncate border-l border-white/20 pl-2" style={{ color: textColor, opacity: 0.65 }}>
                 {currentWord.example}
               </span>
             )}
@@ -299,13 +340,13 @@ export const WordBar: React.FC<WordBarProps> = ({
         >
           {/* Word */}
           <div className="flex items-center gap-2">
-            <span className={`${wordFontClass} tracking-wide font-sans text-white drop-shadow-sm`}>
+            <span className={`${wordFontClass} tracking-wide font-sans drop-shadow-sm`} style={{ color: textColor }}>
               {currentWord.word}
             </span>
 
             {/* Phonetic */}
             {currentWord.phonetic && (
-              <span className={`${phoneticFontClass} font-serif text-white/60`}>
+              <span className={`${phoneticFontClass} font-serif`} style={{ color: textColor, opacity: 0.7 }}>
                 {currentWord.phonetic}
               </span>
             )}
@@ -313,8 +354,8 @@ export const WordBar: React.FC<WordBarProps> = ({
             {/* Pronounce Button */}
             <button
               onClick={handleSpeak}
-              className="p-1 rounded-full bg-white/10 hover:bg-white/25 text-white/80 hover:text-white transition-all transform active:scale-95"
-              style={{ WebkitAppRegion: 'no-drag' } as any}
+              className="p-1 rounded-full bg-white/10 hover:bg-white/25 transition-all transform active:scale-95"
+              style={{ WebkitAppRegion: 'no-drag', color: textColor } as any}
               title="发音 (快捷键 P)"
             >
               <Volume2 className={`${smallIconClass} text-duo-blue`} />
@@ -381,11 +422,11 @@ export const WordBar: React.FC<WordBarProps> = ({
                   title={theme.showTranslationAlways ? currentWord.translation : '悬浮或按空格键查看释义'}
                 >
                   {isTranslationVisible ? (
-                    <span className={`${transFontClass} font-medium text-white/90 truncate animate-fade-in`}>
+                    <span className={`${transFontClass} font-medium truncate animate-fade-in`} style={{ color: textColor, opacity: 0.95 }}>
                       {currentWord.translation}
                     </span>
                   ) : (
-                    <span className="flex items-center gap-1.5 text-xs text-white/40 italic bg-white/5 px-2 py-0.5 rounded">
+                    <span className="flex items-center gap-1.5 text-xs italic bg-white/5 px-2 py-0.5 rounded" style={{ color: textColor, opacity: 0.5 }}>
                       <EyeOff className="w-3 h-3" />
                       <span>悬浮或按空格显释义</span>
                     </span>
@@ -426,16 +467,16 @@ export const WordBar: React.FC<WordBarProps> = ({
         <div className="flex items-center bg-white/10 rounded-lg p-0.5">
           <button
             onClick={onPrev}
-            className={`${actionBtnClass} hover:bg-white/20 rounded text-white/80 hover:text-white transition-colors`}
-            style={{ WebkitAppRegion: 'no-drag' } as any}
+            className={`${actionBtnClass} hover:bg-white/20 rounded transition-colors`}
+            style={{ WebkitAppRegion: 'no-drag', color: textColor, opacity: 0.85 } as any}
             title="上一个单词 (←)"
           >
             <ChevronLeft className={iconClass} />
           </button>
           <button
             onClick={onNext}
-            className={`${actionBtnClass} hover:bg-white/20 rounded text-white/80 hover:text-white transition-colors`}
-            style={{ WebkitAppRegion: 'no-drag' } as any}
+            className={`${actionBtnClass} hover:bg-white/20 rounded transition-colors`}
+            style={{ WebkitAppRegion: 'no-drag', color: textColor, opacity: 0.85 } as any}
             title="下一个单词 (→)"
           >
             <ChevronRight className={iconClass} />
@@ -445,20 +486,36 @@ export const WordBar: React.FC<WordBarProps> = ({
         {/* Mastery rating: Hard vs Mastered */}
         <button
           onClick={onMarkHard}
-          className={`${actionBtnClass} text-white/40 hover:text-duo-red hover:bg-duo-red/10 rounded transition-colors`}
-          style={{ WebkitAppRegion: 'no-drag' } as any}
-          title="标记为生疏 (快捷键 ↓)"
+          className={`${actionBtnClass} rounded transition-all ${
+            currentWord?.isHard
+              ? 'text-duo-red bg-duo-red/25 ring-1 ring-duo-red/40 scale-105'
+              : 'hover:text-duo-red hover:bg-duo-red/10'
+          }`}
+          style={{
+            WebkitAppRegion: 'no-drag',
+            color: currentWord?.isHard ? '#ef4444' : textColor,
+            opacity: currentWord?.isHard ? 1 : 0.65,
+          } as any}
+          title={currentWord?.isHard ? '已在生词本中 (快捷键 ↓)' : '标记为生疏，加入生词本 (快捷键 ↓)'}
         >
-          <HelpCircle className={iconClass} />
+          <HelpCircle className={`${iconClass} ${currentWord?.isHard ? 'fill-duo-red/30' : ''}`} />
         </button>
 
         <button
           onClick={onMarkMastered}
-          className={`${actionBtnClass} text-white/40 hover:text-duo-green hover:bg-duo-green/10 rounded transition-colors`}
-          style={{ WebkitAppRegion: 'no-drag' } as any}
-          title="标记为已掌握 (快捷键 ↑)"
+          className={`${actionBtnClass} rounded transition-all ${
+            (currentWord?.masteryLevel || 0) >= 2
+              ? 'text-duo-green bg-duo-green/25 ring-1 ring-duo-green/40 scale-105'
+              : 'hover:text-duo-green hover:bg-duo-green/10'
+          }`}
+          style={{
+            WebkitAppRegion: 'no-drag',
+            color: (currentWord?.masteryLevel || 0) >= 2 ? '#22c55e' : textColor,
+            opacity: (currentWord?.masteryLevel || 0) >= 2 ? 1 : 0.65,
+          } as any}
+          title={(currentWord?.masteryLevel || 0) >= 2 ? '已牢固掌握 (快捷键 ↑)' : '标记为已掌握 (快捷键 ↑)'}
         >
-          <CheckCircle2 className={iconClass} />
+          <CheckCircle2 className={`${iconClass} ${(currentWord?.masteryLevel || 0) >= 2 ? 'fill-duo-green/30' : ''}`} />
         </button>
 
         {/* Auto Play toggle */}
@@ -467,9 +524,9 @@ export const WordBar: React.FC<WordBarProps> = ({
           className={`${actionBtnClass} rounded transition-colors ${
             autoPlay
               ? 'text-duo-green bg-duo-green/20'
-              : 'text-white/40 hover:text-white/80 hover:bg-white/10'
+              : 'hover:bg-white/10'
           }`}
-          style={{ WebkitAppRegion: 'no-drag' } as any}
+          style={{ WebkitAppRegion: 'no-drag', color: autoPlay ? '#22c55e' : textColor, opacity: autoPlay ? 1 : 0.65 } as any}
           title={autoPlay ? '暂停自动轮播' : '开启摸鱼自动轮播 (每6秒切换)'}
         >
           {autoPlay ? <Pause className={iconClass} /> : <Play className={iconClass} />}
@@ -481,9 +538,9 @@ export const WordBar: React.FC<WordBarProps> = ({
           className={`p-1.5 rounded-lg transition-all ${
             studyMode === 'quiz'
               ? 'bg-duo-green text-white shadow-md scale-105 ring-2 ring-duo-green/40'
-              : 'bg-white/10 hover:bg-white/20 text-white/70 hover:text-white'
+              : 'bg-white/10 hover:bg-white/20'
           }`}
-          style={{ WebkitAppRegion: 'no-drag' } as any}
+          style={{ WebkitAppRegion: 'no-drag', color: studyMode === 'quiz' ? '#ffffff' : textColor, opacity: studyMode === 'quiz' ? 1 : 0.85 } as any}
           title={studyMode === 'quiz' ? '收起抢答模式 (Esc)' : '开启四选一抢答模式 (快捷键 1~4)'}
         >
           <Gamepad2 className={iconClass} />
@@ -492,8 +549,8 @@ export const WordBar: React.FC<WordBarProps> = ({
         {/* Settings button */}
         <button
           onClick={onOpenSettings}
-          className={`${actionBtnClass} text-white/50 hover:text-white hover:bg-white/10 rounded transition-colors`}
-          style={{ WebkitAppRegion: 'no-drag' } as any}
+          className={`${actionBtnClass} hover:bg-white/10 rounded transition-colors`}
+          style={{ WebkitAppRegion: 'no-drag', color: textColor, opacity: 0.65 } as any}
           title="外观与系统设置"
         >
           <Settings className={iconClass} />
@@ -503,16 +560,16 @@ export const WordBar: React.FC<WordBarProps> = ({
         <div className="flex items-center gap-1 border-l border-white/20 pl-1.5">
           <button
             onClick={handleMinimize}
-            className={`${actionBtnClass} text-white/40 hover:text-white hover:bg-white/10 rounded transition-colors`}
-            style={{ WebkitAppRegion: 'no-drag' } as any}
+            className={`${actionBtnClass} hover:bg-white/10 rounded transition-colors`}
+            style={{ WebkitAppRegion: 'no-drag', color: textColor, opacity: 0.6 } as any}
             title="最小化"
           >
             <Minus className={smallIconClass} />
           </button>
           <button
             onClick={handleClose}
-            className={`${actionBtnClass} text-white/40 hover:text-duo-red hover:bg-duo-red/10 rounded transition-colors`}
-            style={{ WebkitAppRegion: 'no-drag' } as any}
+            className={`${actionBtnClass} hover:text-duo-red hover:bg-duo-red/10 rounded transition-colors`}
+            style={{ WebkitAppRegion: 'no-drag', color: textColor, opacity: 0.6 } as any}
             title="关闭应用"
           >
             <X className={smallIconClass} />

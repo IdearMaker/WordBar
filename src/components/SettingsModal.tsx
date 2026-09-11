@@ -219,7 +219,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   <span className="text-xs text-white/40">文字色:</span>
                   <input
                     type="color"
-                    value={theme.customText}
+                    value={theme.customText || '#ffffff'}
                     onChange={(e) =>
                       onUpdateTheme({
                         ...theme,
@@ -227,6 +227,18 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                       })
                     }
                     className="w-8 h-8 rounded border border-white/20 cursor-pointer bg-transparent"
+                  />
+                  <input
+                    type="text"
+                    value={theme.customText || '#ffffff'}
+                    onChange={(e) =>
+                      onUpdateTheme({
+                        ...theme,
+                        customText: e.target.value,
+                      })
+                    }
+                    className="bg-black/30 border border-white/20 px-2 py-1 rounded text-xs text-white font-mono w-24"
+                    placeholder="#ffffff"
                   />
                 </div>
               )}

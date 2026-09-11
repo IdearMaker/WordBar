@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { WordBook, WordItem, ThemeSettings, StudyStats, StudyMode } from './types';
-import { storage } from './services/storage';
+import { storage, syncSpecialBooks } from './services/storage';
 import { tts } from './services/tts';
 import { sounds } from './data/audioEffects';
 import { getThemeStyles } from './styles/themeHelper';
@@ -13,6 +13,10 @@ import { ImportModal } from './components/ImportModal';
 export const App: React.FC = () => {
   const [wordbooks, setWordbooks] = useState<WordBook[]>(() => storage.loadWordbooks());
   const [activeBookId, setActiveBookId] = useState<string>(() => storage.loadActiveWordbookId());
+  const [lastRegularBookId, setLastRegularBookId] = useState<string>(() => {
+    const initId = storage.loadActiveWordbookId();
+    return (initId === 'hard-words' || initId === 'mastered-words') ? 'oxford-3000' : initId;
+  });
   const [theme, setTheme] = useState<ThemeSettings>(() => storage.loadTheme());
   const [stats, setStats] = useState<StudyStats>(() => storage.loadStats());
   const [studyMode, setStudyMode] = useState<StudyMode>(() => storage.loadStudyMode());
@@ -119,29 +123,35 @@ export const App: React.FC = () => {
 
       // Update word mastery
       if (currentWord) {
+        const targetWord = currentWord.word.toLowerCase().trim();
         setWordbooks((prev) => {
           const updated = prev.map((b) => {
-            if (b.id !== activeBook.id) return b;
             const updatedWords = b.words.map((w) => {
-              if (w.id !== currentWord.id) return w;
-              return {
-                ...w,
-                masteryLevel: correct ? Math.min(3, (w.masteryLevel || 0) + 1) : 0,
-                lastReviewed: Date.now(),
-                reviewCount: (w.reviewCount || 0) + 1,
-              };
+              if (w.word.toLowerCase().trim() === targetWord) {
+                return {
+                  ...w,
+                  isHard: correct ? (activeBook?.id === 'hard-words' ? false : w.isHard) : true,
+                  masteryLevel: correct ? Math.min(3, (w.masteryLevel || 0) + 1) : 0,
+                  lastReviewed: Date.now(),
+                  reviewCount: (w.reviewCount || 0) + 1,
+                };
+              }
+              return w;
             });
             return { ...b, words: updatedWords };
           });
-          storage.saveWordbooks(updated);
-          return updated;
+          const synced = syncSpecialBooks(updated);
+          storage.saveWordbooks(synced);
+          return synced;
         });
       }
 
       // Auto proceed to next word on correct
       if (correct) {
         setTimeout(() => {
-          handleNext();
+          if (activeBook?.id !== 'hard-words') {
+            handleNext();
+          }
         }, 700);
       }
     },
@@ -152,37 +162,55 @@ export const App: React.FC = () => {
   const handleMarkMastered = () => {
     if (!currentWord) return;
     sounds.playCorrect();
+    const targetWord = currentWord.word.toLowerCase().trim();
     setWordbooks((prev) => {
       const updated = prev.map((b) => {
-        if (b.id !== activeBook.id) return b;
-        return {
-          ...b,
-          words: b.words.map((w) =>
-            w.id === currentWord.id ? { ...w, masteryLevel: 2 } : w
-          ),
-        };
+        const updatedWords = b.words.map((w) => {
+          if (w.word.toLowerCase().trim() === targetWord) {
+            return {
+              ...w,
+              isHard: false,
+              masteryLevel: 2,
+              lastReviewed: Date.now(),
+            };
+          }
+          return w;
+        });
+        return { ...b, words: updatedWords };
       });
-      storage.saveWordbooks(updated);
-      return updated;
+      const synced = syncSpecialBooks(updated);
+      storage.saveWordbooks(synced);
+      return synced;
     });
-    handleNext();
+
+    if (activeBook?.id !== 'hard-words') {
+      handleNext();
+    }
   };
 
   const handleMarkHard = () => {
     if (!currentWord) return;
     sounds.playWrong();
+    const targetWord = currentWord.word.toLowerCase().trim();
     setWordbooks((prev) => {
       const updated = prev.map((b) => {
-        if (b.id !== activeBook.id) return b;
-        return {
-          ...b,
-          words: b.words.map((w) =>
-            w.id === currentWord.id ? { ...w, masteryLevel: 0 } : w
-          ),
-        };
+        const updatedWords = b.words.map((w) => {
+          if (w.word.toLowerCase().trim() === targetWord) {
+            return {
+              ...w,
+              isHard: true,
+              masteryLevel: 0,
+              lastReviewed: Date.now(),
+              reviewCount: (w.reviewCount || 0) + 1,
+            };
+          }
+          return w;
+        });
+        return { ...b, words: updatedWords };
       });
-      storage.saveWordbooks(updated);
-      return updated;
+      const synced = syncSpecialBooks(updated);
+      storage.saveWordbooks(synced);
+      return synced;
     });
     handleNext();
   };
@@ -251,9 +279,24 @@ export const App: React.FC = () => {
   };
 
   // Compute theme CSS styles
-  const { containerStyle, accentColor } = getThemeStyles(theme);
+  const { containerStyle, accentColor, textColor } = getThemeStyles(theme);
 
-  if (!currentWord) {
+  const handleSelectBook = (id: string) => {
+    if (id !== 'hard-words' && id !== 'mastered-words') {
+      setLastRegularBookId(id);
+    }
+    setActiveBookId(id);
+    storage.saveActiveWordbookId(id);
+    setActiveModal('none');
+  };
+
+  const handleReturnToRegularBook = () => {
+    const targetId = lastRegularBookId || 'oxford-3000';
+    setActiveBookId(targetId);
+    storage.saveActiveWordbookId(targetId);
+  };
+
+  if (!currentWord && activeBook?.id !== 'hard-words' && activeBook?.id !== 'mastered-words' && words.length === 0) {
     return (
       <div className="w-full h-full flex items-center justify-center p-2 bg-black/80 text-white text-xs">
         <span>词库中暂无可用单词，请导入或选择内置词库。</span>
@@ -279,18 +322,13 @@ export const App: React.FC = () => {
         <WordBookModal
           wordbooks={wordbooks}
           activeBookId={activeBookId}
-          onSelectBook={(id) => {
-            setActiveBookId(id);
-            storage.saveActiveWordbookId(id);
-            setActiveModal('none');
-          }}
+          onSelectBook={handleSelectBook}
           onDeleteBook={(id) => {
             const remaining = wordbooks.filter((b) => b.id !== id);
             setWordbooks(remaining);
             storage.saveWordbooks(remaining);
             if (activeBookId === id && remaining.length > 0) {
-              setActiveBookId(remaining[0].id);
-              storage.saveActiveWordbookId(remaining[0].id);
+              handleSelectBook(remaining[0].id);
             }
           }}
           onResetProgress={(id) => {
@@ -299,12 +337,17 @@ export const App: React.FC = () => {
                 ? {
                     ...b,
                     currentIndex: 0,
-                    words: b.words.map((w) => ({ ...w, masteryLevel: 0 })),
+                    words: b.words.map((w) => ({
+                      ...w,
+                      masteryLevel: 0,
+                      isHard: false,
+                    })),
                   }
                 : b
             );
-            setWordbooks(updated);
-            storage.saveWordbooks(updated);
+            const synced = syncSpecialBooks(updated);
+            setWordbooks(synced);
+            storage.saveWordbooks(synced);
           }}
           onOpenImport={() => setActiveModal('import')}
           onClose={() => setActiveModal('none')}
@@ -315,10 +358,10 @@ export const App: React.FC = () => {
         <ImportModal
           onSaveBook={(newBook) => {
             const updated = [newBook, ...wordbooks];
-            setWordbooks(updated);
-            storage.saveWordbooks(updated);
-            setActiveBookId(newBook.id);
-            storage.saveActiveWordbookId(newBook.id);
+            const synced = syncSpecialBooks(updated);
+            setWordbooks(synced);
+            storage.saveWordbooks(synced);
+            handleSelectBook(newBook.id);
             setActiveModal('none');
           }}
           onClose={() => setActiveModal('none')}
@@ -326,12 +369,13 @@ export const App: React.FC = () => {
       )}
 
       {/* Quiz 4-choice interactive options */}
-      {studyMode === 'quiz' && activeModal === 'none' && (
+      {studyMode === 'quiz' && activeModal === 'none' && currentWord && (
         <QuizOptions
           currentWord={currentWord}
           allWords={words}
           onResult={handleQuizResult}
           accentColor={accentColor}
+          textColor={textColor}
         />
       )}
 
@@ -342,6 +386,8 @@ export const App: React.FC = () => {
           totalWords={words.length}
           currentIndex={currentIndex}
           wordbookTitle={activeBook?.title || '单词本'}
+          isSpecialBook={activeBook?.isSpecial}
+          onReturnToRegularBook={handleReturnToRegularBook}
           theme={theme}
           stats={stats}
           studyMode={studyMode}
@@ -358,7 +404,7 @@ export const App: React.FC = () => {
           onMarkMastered={handleMarkMastered}
           onMarkHard={handleMarkHard}
           autoPlay={autoPlay}
-          onToggleAutoPlay={() => setAutoPlay(!autoPlay)}
+          onToggleAutoPlay={() => setAutoPlay((prev) => !prev)}
           accentColor={accentColor}
           onUpdateTheme={handleUpdateTheme}
         />

@@ -1,4 +1,4 @@
-import { WordBook, ThemeSettings, StudyStats, StudyMode } from '../types';
+import { WordBook, WordItem, ThemeSettings, StudyStats, StudyMode } from '../types';
 import { defaultWordbooks } from '../data/defaultWordbooks';
 
 const STORAGE_KEYS = {
@@ -8,6 +8,66 @@ const STORAGE_KEYS = {
   STATS: 'wordbar_study_stats',
   STUDY_MODE: 'wordbar_study_mode',
 };
+
+export function syncSpecialBooks(books: WordBook[]): WordBook[] {
+  const hardMap = new Map<string, WordItem>();
+  const masteredMap = new Map<string, WordItem>();
+
+  const regularBooks = books.filter((b) => b.id !== 'hard-words' && b.id !== 'mastered-words');
+  const existingHardBook = books.find((b) => b.id === 'hard-words');
+  const existingMasteredBook = books.find((b) => b.id === 'mastered-words');
+
+  if (existingHardBook) {
+    for (const w of existingHardBook.words) {
+      if (w.isHard !== false) {
+        hardMap.set(w.word.toLowerCase().trim(), { ...w, isHard: true });
+      }
+    }
+  }
+
+  if (existingMasteredBook) {
+    for (const w of existingMasteredBook.words) {
+      if ((w.masteryLevel || 0) >= 2) {
+        masteredMap.set(w.word.toLowerCase().trim(), w);
+      }
+    }
+  }
+
+  for (const b of regularBooks) {
+    for (const w of b.words) {
+      const key = w.word.toLowerCase().trim();
+      if (w.isHard) {
+        hardMap.set(key, { ...w, isHard: true });
+        masteredMap.delete(key);
+      } else if ((w.masteryLevel || 0) >= 2) {
+        masteredMap.set(key, w);
+        hardMap.delete(key);
+      }
+    }
+  }
+
+  const hardBook: WordBook = {
+    id: 'hard-words',
+    title: '🔥 生词本 (重点强化)',
+    description: '收录所有标记为生疏及需反复强化的生词，专攻薄弱项',
+    isSpecial: 'hard',
+    isBuiltIn: false,
+    currentIndex: Math.min(existingHardBook?.currentIndex || 0, Math.max(0, hardMap.size - 1)),
+    words: Array.from(hardMap.values()),
+  };
+
+  const masteredBook: WordBook = {
+    id: 'mastered-words',
+    title: '⭐ 熟词本 (已牢固掌握)',
+    description: '收录所有已背熟、标记为已掌握的单词，支持温故知新',
+    isSpecial: 'mastered',
+    isBuiltIn: false,
+    currentIndex: Math.min(existingMasteredBook?.currentIndex || 0, Math.max(0, masteredMap.size - 1)),
+    words: Array.from(masteredMap.values()),
+  };
+
+  return [hardBook, masteredBook, ...regularBooks];
+}
 
 export const defaultTheme: ThemeSettings = {
   mode: 'preset',
@@ -71,6 +131,7 @@ export const storage = {
         for (const w of existingBook.words) {
           const stats = {
             masteryLevel: w.masteryLevel,
+            isHard: w.isHard,
             lastReviewed: w.lastReviewed,
             reviewCount: w.reviewCount,
           };
@@ -92,7 +153,9 @@ export const storage = {
         };
       });
 
-      books = [...mergedBuiltIns, ...customBooks];
+      books = syncSpecialBooks([...mergedBuiltIns, ...customBooks]);
+    } else {
+      books = syncSpecialBooks(defaultWordbooks);
     }
 
     this.saveWordbooks(books);

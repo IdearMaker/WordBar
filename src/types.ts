@@ -6,6 +6,7 @@ export interface WordItem {
   example?: string;
   exampleTrans?: string;
   masteryLevel?: number; // 0: new, 1: learning, 2: mastered
+  isHard?: boolean; // true if flagged as unfamiliar/hard word
   lastReviewed?: number;
   reviewCount?: number;
 }
@@ -15,6 +16,7 @@ export interface WordBook {
   title: string;
   description: string;
   isBuiltIn?: boolean;
+  isSpecial?: 'hard' | 'mastered';
   words: WordItem[];
   currentIndex: number;
 }

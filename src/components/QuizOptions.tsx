@@ -8,6 +8,7 @@ interface QuizOptionsProps {
   allWords: WordItem[];
   onResult: (correct: boolean) => void;
   accentColor: string;
+  textColor?: string;
 }
 
 interface OptionItem {
@@ -20,6 +21,7 @@ export const QuizOptions: React.FC<QuizOptionsProps> = ({
   currentWord,
   allWords,
   onResult,
+  textColor,
 }) => {
   const [options, setOptions] = useState<OptionItem[]>([]);
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
@@ -94,13 +96,16 @@ export const QuizOptions: React.FC<QuizOptionsProps> = ({
 
   return (
     <div className="w-full flex items-center justify-between gap-2 px-4 py-1.5 animate-fade-in border-t border-white/5 bg-black/20">
-      <div className="flex items-center gap-1 text-xs font-semibold text-white/50 px-2 py-0.5 rounded bg-black/30 shrink-0">
+      <div
+        className="flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded bg-black/30 shrink-0"
+        style={{ color: textColor || '#ffffff', opacity: 0.7 }}
+      >
         <span>抢答选项:</span>
       </div>
 
       <div className="flex-1 grid grid-cols-4 gap-2">
         {options.map((opt, idx) => {
-          let btnStyle = 'bg-white/10 hover:bg-white/20 text-white/90 border-white/10 active:scale-95';
+          let btnStyle = 'bg-white/10 hover:bg-white/20 border-white/10 active:scale-95';
 
           if (isAnswered) {
             if (opt.isCorrect) {
@@ -118,6 +123,9 @@ export const QuizOptions: React.FC<QuizOptionsProps> = ({
               onClick={() => handleSelect(idx)}
               disabled={isAnswered}
               className={`flex items-center justify-between px-3 py-1.5 rounded-lg border text-xs sm:text-sm transition-all duration-150 truncate cursor-pointer ${btnStyle}`}
+              style={{
+                color: isAnswered && (opt.isCorrect || selectedIdx === idx) ? '#ffffff' : (textColor || '#ffffff'),
+              }}
               title={opt.translation}
             >
               <span className="flex items-center gap-1.5 truncate">
